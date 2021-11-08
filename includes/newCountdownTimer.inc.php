@@ -15,7 +15,7 @@ if (isset($_POST['timer-submit'])) {
         header("Location: ../newTimerForm.php?error=emptyfields&endTimeDate=" . $countdownTime."&hours=".$countdownHours."&minutes=".$countdownMinutes."&seconds=".$countdownSeconds."&timerName=".$countdownName);
         exit();
     } else {
-        $sql = "SELECT CountdownName FROM countdown WHERE CountdownName=?";
+        $sql = "SELECT CountdownName FROM countdowntime WHERE CountdownName=?";
         $statement = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($statement, $sql)) {
             header("Location: ../newTimerForm.php?error=sqlerror");
@@ -31,7 +31,7 @@ if (isset($_POST['timer-submit'])) {
         } else {
 
             //Using prepared statement inserst user into database also hash the password
-            $sql = "INSERT INTO countdown (CountdownTime, CountdownName ) VALUES (?, ?)";
+            $sql = "INSERT INTO countdowntime (CountdownTime, CountdownName ) VALUES (?, ?)";
             $statement = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($statement, $sql)) {
                 header("Location: ../newTimerForm.php?error=sqlerror");

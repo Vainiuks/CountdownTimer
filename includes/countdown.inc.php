@@ -9,7 +9,7 @@ $minutes = 0;
 $seconds = 0;
 $countdownName = "Timer";
 
-$afterDelete = "SELECT CountdownTime, CountdownName FROM countdown";
+$afterDelete = "SELECT CountdownTime, CountdownName FROM countdowntime";
 $countdownResults = $conn->query($afterDelete);
 
     //Get selected value from SESSION

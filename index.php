@@ -4,25 +4,24 @@ require 'header.php';
 require 'includes/database.inc.php';
 
 //Get all countdowns
-$sql = "SELECT CountdownTime, CountdownName FROM countdown";
+$sql = "SELECT CountdownTime, CountdownName FROM countdowntime";
 $results = $conn->query($sql);
 
 //Get current date
 date_default_timezone_set('Europe/Kiev');
 $currentDate = date("Y-m-d G:i:s", time());
 
-//Sutvarkyti delete funkcija
 // //Delete countdowns which countdown time passed
 foreach ($results as $result) {
     if ($result["CountdownTime"] < $currentDate) {
         $delete = $result["CountdownTime"];
-        $sqlDelete = "DELETE FROM countdown WHERE CountdownTime = '$delete'";
+        $sqlDelete = "DELETE FROM countdowntime WHERE CountdownTime = '$delete'";
         mysqli_query($conn, $sqlDelete);
     }
 }
 
 //Get new countdowns after cleaning database
-$afterDelete = "SELECT CountdownTime, CountdownName FROM countdown";
+$afterDelete = "SELECT CountdownTime, CountdownName FROM countdowntime";
 $countdownResults = $conn->query($afterDelete);
 
 ?>
